@@ -1,0 +1,51 @@
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Scanner;
+
+
+/**
+ * DONE A simple class that needs to be localized
+ *
+ * @author hinesen
+ * @author mohan.
+ *         Created Mar 27, 2011.
+ */
+public class PrintBalance{
+
+
+	/**
+	 * Simple Java Method that is crying out to be localized.
+	 *
+	 * @param args
+	 */
+	public static void main(String args[])
+	{
+		Scanner scanInput = new Scanner(System.in);
+		Date today = new Date();
+
+		Locale currentLocale;
+		ResourceBundle messages;
+		
+		System.out.println("en, fr, de:");
+		String language = scanInput.nextLine();
+		String country = scanInput.nextLine();
+		
+		currentLocale = new Locale(language, country);
+		messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+		
+		//Greeting
+		System.out.println(messages.getString("greetings"));
+
+		//Get User's Name
+		System.out.println(messages.getString("inquiry"));
+		String name = scanInput.nextLine();
+		System.out.println(messages.getString("nameStatement") + name);
+
+		//print today's date, balance and bid goodbye
+		System.out.println(messages.getString("dateStatement")+ today.toString());
+		System.out.println(messages.getString("billStatement"));
+		System.out.println(messages.getString("farewell"));
+	}
+}

@@ -1,0 +1,63 @@
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Scanner;
+import static java.text.DateFormat.*;
+
+/**
+ * DONE A simple class that needs to be localized
+ *
+ * @author hinesen
+ * @author mohan.
+ *         Created Mar 27, 2011.
+ */
+public class PrintBalance{
+
+
+	/**
+	 * Simple Java Method that is crying out to be localized.
+	 *
+	 * @param args
+	 */
+	public static void main(String args[])
+	{
+		Scanner scanInput = new Scanner(System.in);
+		Date today = new Date();
+
+		Locale currentLocale;
+		ResourceBundle messages;
+		
+		String language = "e";
+		String country = "US";
+		if (args != null){
+			if (args.length >= 2){
+				language = args[0];
+				country = args[1];
+			}
+		}
+		
+		currentLocale = new Locale(language, country);
+		messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+		
+		NumberFormat numFormater = NumberFormat.getCurrencyInstance(currentLocale);
+		String debtFormat = numFormater.format(Float.valueOf(messages.getString("debt")).floatValue());
+		
+		DateFormat dateFormater = getDateInstance(SHORT, currentLocale);
+		String dateFormat = dateFormater.format(new Date());
+		
+		//Greeting
+		System.out.println(messages.getString("greetings"));
+
+		//Get User's Name
+		System.out.println(messages.getString("inquiry"));
+		String name = scanInput.nextLine();
+		System.out.println(messages.getString("nameStatement") + " " + name);
+
+		//print today's date, balance and bid goodbye
+		System.out.println(messages.getString("dateStatement")+ " " + debtFormat);
+		System.out.println(messages.getString("billStatement") + " " + dateFormat);
+		System.out.println(messages.getString("farewell"));
+	}
+}
