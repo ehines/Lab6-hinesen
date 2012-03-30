@@ -50,7 +50,7 @@ public class PrintBalanceTest {
 		messages = ResourceBundle.getBundle("MessageBundle", currentLocale);
 		NumberFormat numFormater = NumberFormat.getCurrencyInstance(currentLocale);
 		String debtFormat = numFormater.format(Float.valueOf(messages.getString("debt")).floatValue());
-		assertEquals(debtFormat, "9876543.21");
+		assertEquals(debtFormat, "$9,876,543.21");
 	}
 	
 	@Test
@@ -101,7 +101,7 @@ public class PrintBalanceTest {
 		messages = ResourceBundle.getBundle("MessageBundle", currentLocale);
 		NumberFormat numFormater = NumberFormat.getCurrencyInstance(currentLocale);
 		String debtFormat = numFormater.format(Float.valueOf(messages.getString("debt")).floatValue());
-		assertEquals(debtFormat, "9.876.543,21");
+		assertEquals(debtFormat, "9.876.543,21 €");
 	}
 	
 	@Test
@@ -152,7 +152,7 @@ public class PrintBalanceTest {
 		messages = ResourceBundle.getBundle("MessageBundle", currentLocale);
 		NumberFormat numFormater = NumberFormat.getCurrencyInstance(currentLocale);
 		String debtFormat = numFormater.format(Float.valueOf(messages.getString("debt")).floatValue());
-		assertEquals(debtFormat, "9.876.543,21");
+		assertEquals(debtFormat, "9 876 543,00 €");
 	}
 	
 	@Test
